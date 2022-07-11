@@ -1,0 +1,11 @@
+#Población con contrato
+pc1 <- hombres %>%
+  as_tibble() %>%
+  mutate(c= case_when(p3j==1~1, p3j==2~2)) #Dataframe de los hombres que cuentan con contrato~1 y los que no~2
+table(pc1$c) #Imprime los datos de la tabla pc1
+pc2 <- mujeres %>%
+  as_tibble() %>%
+  mutate(c= case_when(p3j==1~1, p3j==2~2)) #Dataframe de los mujeres que cuentan con contrato~1 y los que no~2
+table(pc2$c) #Imprime los datos de la tabla pc2
+wtd.table(pc1$c,weights = hombres$fac.x) #Imprime las cantidades de hombres con contrato~1 y sin contrato~2 aumentados por el factor expansor
+wtd.table(pc2$c,weights = mujeres$fac.x) #Imprime las cantidades de mujeres con contrato~1 y sin contrato~2 aumentados por el factor expansor
