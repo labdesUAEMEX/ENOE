@@ -1,3 +1,5 @@
+require(questionr)
+require(dplyr)
 #Tipo de contrato
 ptc1 <- hombres %>%
   as_tibble() %>%
