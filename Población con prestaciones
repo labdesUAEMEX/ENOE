@@ -1,3 +1,5 @@
+require(questionr)
+require(dplyr)
 #Prestaciones
 pp1 <- hombres %>%
   as_tibble() %>%
