@@ -1,0 +1,10 @@
+pea1 <- hombres %>%
+  as_tibble() %>%
+  mutate(ea= case_when(eda.x<12 | eda.x==99~1, eda.x>=12 & eda.x<=98~2)) #Dataframe de hombres economicamente no activos ~1 y hombres economicamente activos ~2
+table(pea1$ea) #Imprime los datos de la tabla pea1
+pea2 <- mujeres %>%
+  as_tibble() %>%
+  mutate(ea= case_when(eda.x<12 | eda.x==99~1, eda.x>=12 & eda.x<=98~2)) #Dataframe de mujeres economicamente no activas ~1 y muejeres economicamente activas ~2
+table(pea2$ea) #Imprime los datos de la tabla pea2
+wtd.table(pea1$ea,weights = hombres$fac.x) #Imprime las cantidades de hombres economicamente no activos~1 y hombres economicamente activos~2 aumentados por el factor expansor
+wtd.table(pea2$ea,weights = mujeres$fac.x) #Imprime las cantidades de mujeres economicamente no activos~1 y mujeres economicamente activos~2 aumentados por el factor expansor
