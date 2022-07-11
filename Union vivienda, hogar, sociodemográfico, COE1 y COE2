@@ -1,0 +1,50 @@
+library(readr)
+viv <- read.csv(file.choose())
+hog <- read.csv(file.choose())
+soc <- read.csv(file.choose())
+coe1 <- read.csv(file.choose())
+coe2 <- read.csv(file.choose())
+
+viv1 <- data.frame(viv, 
+                   CD_A=as.character(viv$cd_a),
+                   ENT=as.character(viv$ent),
+                   CON=as.character(viv$con),
+                   V_SEL=as.character(viv$v_sel))
+hog1 <- data.frame(hog,
+                   CD_A=as.character(hog$cd_a),
+                   ENT=as.character(hog$ent),
+                   CON=as.character(hog$con),
+                   V_SEL=as.character(hog$v_sel),
+                   N_HOG=as.character(hog$n_hog),
+                   H_MUD=as.character(hog$h_mud))
+soc1 <- data.frame(soc,
+                   CD_A=as.character(soc$cd_a),
+                   ENT=as.character(soc$ent),
+                   CON=as.character(soc$con),
+                   V_SEL=as.character(soc$v_sel),
+                   N_HOG=as.character(soc$n_hog),
+                   H_MUD=as.character(soc$h_mud),
+                   N_REN=as.character(soc$n_ren)) #Genera la base de datos agregando los campos llave para la base soc en forma de caracteres
+coe11 <- data.frame(coe1,
+                    CD_A=as.character(coe1$cd_a),
+                    ENT=as.character(coe1$ent),
+                    CON=as.character(coe1$con),
+                    V_SEL=as.character(coe1$v_sel),
+                    N_HOG=as.character(coe1$n_hog),
+                    H_MUD=as.character(coe1$h_mud),
+                    N_REN=as.character(coe1$n_ren)) #Genera la base de datos agregando los campos llave para la base coe1 en forma de caracteres
+coe21 <- data.frame(coe2,
+                    CD_A=as.character(coe2$cd_a),
+                    ENT=as.character(coe2$ent),
+                    CON=as.character(coe2$con),
+                    V_SEL=as.character(coe2$v_sel),
+                    N_HOG=as.character(coe2$n_hog),
+                    H_MUD=as.character(coe2$h_mud),
+                    N_REN=as.character(coe2$n_ren)) #Genera la base de datos agregando los campos llave para la base coe1 en forma de caracteres
+llavevh <- c("CD_A","ENT","CON","V_SEL")
+tablavh<- merge(viv1,hog1,by=llavevh,all = T)
+llavevhs <- c("CD_A","ENT","CON","V_SEL","N_HOG","H_MUD")
+tablavhs <- merge(tablavh,soc1, by=llavevhs)
+llavevhsc <- c("CD_A","ENT","CON","V_SEL","N_HOG","H_MUD","N_REN")
+tablavhsc <- merge(tablavhs,coe11, by=llavevhsc, all=T)
+tablavhscc <- merge(tablavhsc,coe21, by=llavevhsc, all = T)
