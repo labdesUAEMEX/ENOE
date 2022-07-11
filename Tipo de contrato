@@ -1,0 +1,11 @@
+#Tipo de contrato
+ptc1 <- hombres %>%
+  as_tibble() %>%
+  mutate(tc= case_when(p3k1<=9~1)) #Dataframe de hombres que cuentan con algún tipo de contrato~1
+table(ptc1$tc) #Imprime los datos de la tabla ptc1
+ptc2 <- mujeres %>%
+  as_tibble() %>%
+  mutate(tc= case_when(p3k1<=9~1)) #Dataframe de mujeres que cuentan con algún tipo de contrato~1
+table(ptc2$tc) #Imprime los datos de la tabla ptc2
+wtd.table(ptc1$tc,weights = hombres$fac.x) #Imprime las cantidades de hombres con algún tipo de contrato~1 aumentados por el factor expansor
+wtd.table(ptc2$tc,weights = mujeres$fac.x) #Imprime las cantidades de mujeres con algún tipo de contrato~1 aumentados por el factor expansor
