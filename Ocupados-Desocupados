@@ -1,0 +1,13 @@
+#Ocupados y desocupados
+po1 <- hombres %>%
+  as_tibble() %>%
+  mutate(o= case_when(p1==1 | p1a1==1 | p1a2==2 | p1c<=4 | p1d==1 | p1e==1 ~1,
+                      p1c==11 | p2_1==1 | p2_2==2 | p2_3==3 & p2c==1 & p2b==1 & p1b==2 & p1d==2 & p1d==9~2)) #Dataframe de hombres ocupados~1 y desocupados~2
+table(po1$o) #Imprime los datos de la tabla po1
+po2 <- mujeres %>%
+  as_tibble() %>%
+  mutate(o= case_when(p1==1 | p1a1==1 | p1a2==2 | p1c<=4 | p1d==1 | p1e==1 ~1,
+                      p1c==11 | p2_1==1 | p2_2==2 | p2_3==3 & p2c==1 & p2b==1 & p1b==2 & p1d==2 & p1d==9~2)) #Dataframe de muejeres ocupadas~1 y desocupadas~2
+table(po2$o) #Imprime los datos de la tabla po2
+wtd.table(po1$o,weights = hombres$fac.x) #Imprime las cantidades de hombres ocupados~1 y desocupados~2 aumentados por el factor expansor
+wtd.table(po2$o,weights = mujeres$fac.x) #Imprime las cantidades de mujeres ocupadas~1 y desocupadas~2 aumentados por el factor expansor
