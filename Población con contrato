@@ -1,3 +1,5 @@
+require(questionr)
+require(dplyr)
 #Población con contrato
 pc1 <- hombres %>%
   as_tibble() %>%
