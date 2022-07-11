@@ -1,0 +1,23 @@
+library(readr)
+coe1 <- read.csv(file.choose()) #Sube la base de datos del COE1 extraido del primer trimestre del 2005
+soc <- read.csv(file.choose()) #Sube la base de datos del cuestionario sociodemográfico del primer trimestre del 2005
+
+soc1 <- data.frame(soc,
+                   CD_A=as.character(soc$cd_a),
+                   ENT=as.character(soc$ent),
+                   CON=as.character(soc$con),
+                   V_SEL=as.character(soc$v_sel),
+                   N_HOG=as.character(soc$n_hog),
+                   H_MUD=as.character(soc$h_mud),
+                   N_REN=as.character(soc$n_ren)) #Genera la base de datos agregando los campos llave para la base soc en forma de caracteres
+coe11 <- data.frame(coe1,
+                   CD_A=as.character(coe1$cd_a),
+                   ENT=as.character(coe1$ent),
+                   CON=as.character(coe1$con),
+                   V_SEL=as.character(coe1$v_sel),
+                   N_HOG=as.character(coe1$n_hog),
+                   H_MUD=as.character(coe1$h_mud),
+                   N_REN=as.character(coe1$n_ren)) #Genera la base de datos agregando los campos llave para la base coe1 en forma de caracteres
+
+llave<- c("CD_A","ENT","CON","V_SEL","N_HOG","H_MUD","N_REN") #Establece los valores llave para unir las tablas de soc1 y coe11
+tabla1<- merge(soc1,coe11,by=llave,all = T) #Une todo el contenido de las bases de soc1 y coe11 basandose en los datos de llave
