@@ -1,0 +1,8 @@
+require(questionr)
+
+hombres <- tabla1 %>%
+  as_tibble() %>%
+  filter(sex==1) #Genera una base de la población total dividida para hombres
+mujeres <- tabla1 %>%
+  as_tibble() %>%
+  filter(sex==2) #Genera una base de la población total dividida para mujeres
