@@ -10,3 +10,22 @@ table(pa1$a) #Imprime los datos de la tabla pa1 para hombres ocupados plenos y s
 table(pa1$b) #Imprime los datos de la tabla pa1 para hombres trabajadores por cuenta propia
 table(pa1$c) #Imprime los datos de la tabla pa1 para hombres empleadores
 table(pa1$d) #Imprime los datos de la tabla pa1 para hombres trabajadores sin pago
+pa2 <- mujeres %>%
+  as_tibble() %>%
+  mutate(a= case_when( p1==1 ~1,
+                       p1a1==1 | p1a1==NA | p1a2==2 ~2), 
+         b=case_when((p3d==2 | p3d==9) | (p3d==1 & p3g1_1==NA) ~3),
+         c=case_when(p3d==1 & p3g1_1==1 ~4),
+         d=case_when(p3h==2 | p3h==3 ~5)) #Dataframe de hombres ocupados plenos~1, solo ocupados~2, trabajadores por cuenta propia~3, empleadores~4, trabajadores sin pago ~5
+table(pa2$a) #Imprime los datos de la tabla pa2 para hombres ocupados plenos y solo ocupados
+table(pa2$b) #Imprime los datos de la tabla pa2 para hombres trabajadores por cuenta propia
+table(pa2$c) #Imprime los datos de la tabla pa2 para hombres empleadores
+table(pa2$d) #Imprime los datos de la tabla pa2 para hombres trabajadores sin pago aumentados por el factor expansor
+wtd.table(pa1$a,weights = hombres$fac.x) #Imprime las cantidades de hombres ocupados plenos~1, solo ocupados~2 aumentados por el factor expansor
+wtd.table(pa1$b,weights = hombres$fac.x) #Imprime las cantidades de hombres trabajadores por cuenta propia~3 aumentados por el factor expansor
+wtd.table(pa1$c,weights = hombres$fac.x) #Imprime las cantidades de hombres empleadores~4 aumentados por el factor expansor
+wtd.table(pa1$d,weights = hombres$fac.x) #Imprime las cantidades de hombres trabajadores sin pago ~5 aumentados por el factor expansor
+wtd.table(pa2$a,weights = mujeres$fac.x) #Imprime las cantidades de mujeres ocupados plenos~1, solo ocupados~2 aumentados por el factor expansor
+wtd.table(pa2$b,weights = mujeres$fac.x) #Imprime las cantidades de mujeres trabajadores por cuenta propia~3 aumentados por el factor expansor
+wtd.table(pa2$c,weights = mujeres$fac.x) #Imprime las cantidades de mujeres empleadores~4 aumentados por el factor expansor
+wtd.table(pa2$d,weights = mujeres$fac.x) #Imprime las cantidades de mujeres trabajadores sin pago ~5 aumentados por el factor expansor
