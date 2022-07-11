@@ -1,3 +1,4 @@
+require(questionr)
 require(dplyr)
 pea1 <- hombres %>%
   as_tibble() %>%
