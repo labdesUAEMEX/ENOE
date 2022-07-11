@@ -1,3 +1,4 @@
+require(dplyr)
 pea1 <- hombres %>%
   as_tibble() %>%
   mutate(ea= case_when(eda.x<12 | eda.x==99~1, eda.x>=12 & eda.x<=98~2)) #Dataframe de hombres economicamente no activos ~1 y hombres economicamente activos ~2
