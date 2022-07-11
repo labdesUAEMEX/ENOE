@@ -1,0 +1,11 @@
+#Prestaciones
+pp1 <- hombres %>%
+  as_tibble() %>%
+  mutate(p=case_when(p3l1==1 | p3l2==2 | p3l3==3 | p3l4==4~1)) #Dataframe de hombres con prestaciones~1
+table(pp1$p) #Imprime los datos de la tabla pp1
+pp2 <- mujeres %>%
+  as_tibble() %>%
+  mutate(p=case_when(p3l1==1 | p3l2==2 | p3l3==3 | p3l4==4~1)) #Dataframe de mujeres con prestaciones~1
+table(pp2$p) #Imprime los datos de la tabla pp2
+wtd.table(pp1$p,weights = hombres$fac.x) #Imprime las cantidades de hombres con prestaciones~1 aumentados por el factor expansor
+wtd.table(pp2$p,weights = mujeres$fac.x) #Imprime las cantidades de mujeres con prestaciones~1 aumentados por el factor expansor
