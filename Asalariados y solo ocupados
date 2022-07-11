@@ -1,3 +1,5 @@
+require(questionr)
+require(dplyr)
 #Asalariados y solo ocupados
 pa1 <- hombres %>%
      as_tibble() %>%
